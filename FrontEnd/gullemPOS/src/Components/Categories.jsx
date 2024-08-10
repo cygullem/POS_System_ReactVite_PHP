@@ -1,7 +1,7 @@
 const Categories = () => {
     return (
         <>
-            <h1 className="text-3xl font-semibold">Categories</h1>
+            <h1 className="text-3xl font-semibold cursor-pointer">Categories</h1>
         </>
     );
 }
