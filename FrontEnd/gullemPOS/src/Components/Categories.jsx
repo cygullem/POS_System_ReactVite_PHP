@@ -1,7 +1,7 @@
 const Categories = () => {
     return (
         <>
-            <h1>Catégories</h1>
+            <h1>Categories</h1>
         </>
     );
 }

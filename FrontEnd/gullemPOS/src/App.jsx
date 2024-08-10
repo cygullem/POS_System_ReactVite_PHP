@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './CSS/main.css'
+import './CSS/main.css';
+import { Toaster, toast } from 'sonner';
 
 function App() {
 
@@ -12,4 +12,4 @@ function App() {
     )
 }
 
-export default App
+export default App;
