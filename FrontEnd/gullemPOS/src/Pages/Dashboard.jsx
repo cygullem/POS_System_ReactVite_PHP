@@ -14,7 +14,7 @@ const Dashboard = () => {
             <Menu />
             <Invoice />
 
-            <h1>THIS IS DAHBOARD</h1>
+            <h1 className="text-3xl font-semibold text-blue-500">THIS IS DASHBOARD</h1>
         </>
     );
 }
