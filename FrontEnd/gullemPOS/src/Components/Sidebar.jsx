@@ -15,7 +15,7 @@ const Sidebar = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="sidebar_footer flex flex-col gap-4">
+                <div className="sidebar_footer flex flex-col gap-3">
                     <i class="fa-regular fa-circle-question active:scale-90"></i>
                     <i class="fa-solid fa-right-from-bracket text-red-600 transform rotate-180 active:scale-90"></i>
                 </div>
