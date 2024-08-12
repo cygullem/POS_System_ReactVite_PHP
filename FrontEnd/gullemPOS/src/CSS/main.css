@@ -49,7 +49,7 @@
 
 /*===================================== Navbar =====================================*/
 .navbar_container{
-    padding: 13px;
+    padding: 10px;
     background-color: #ffffff;
     border: 1px solid var(--border-gray);
 }
