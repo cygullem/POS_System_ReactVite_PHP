@@ -2,7 +2,7 @@ const Sidebar = () => {
     return (
         <>
             <div className="sidebar flex flex-col items-center">
-                <div className="sidebar_header rounded-xl flex items-center justify-center mb-10">
+                <div className="sidebar_header rounded-xl flex items-center justify-center mt-2 mb-10">
                     <i class="fa-brands fa-slack"></i>
                 </div>
                 <div className="header_body flex justify-center items-start flex-1 mt-4 mb-4">
