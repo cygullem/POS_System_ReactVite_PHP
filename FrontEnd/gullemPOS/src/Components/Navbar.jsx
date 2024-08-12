@@ -4,7 +4,7 @@ const Navbar = () => {
     return (
         <>
             <div className="navbar_container flex justify-between gap-2">
-                <div className="navbar_search border flex-1 p-4"></div>
+                <div className="navbar_search flex-1"></div>
 
                 <div className="navbar_userProfile flex items-center">
                     <i className="fa-regular fa-bell active:scale-90 text-3xl mr-6"></i>
