@@ -2,76 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
 }
 
-:root{
+:root {
     --border-gray: #e1e1e1;
     --bg-gray: #D4D5D6;
     --icon: #b1b1b1;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
 
 
 /*===================================== Dashboard =====================================*/
-.dashboard_container{
+.dashboard_container {
     background-color: var(--bg-gray);
 }
 
 
 
 /*===================================== Sidebar =====================================*/
-.sidebar{
+.sidebar {
     padding: 15px;
     background-color: #ffffff;
     border: 1px solid var(--border-gray);
 }
-.sidebar_header i{
+
+.sidebar_header i {
     font-size: 40px;
     color: #3772f0;
 }
-.sidebar_footer i{
+
+.sidebar_footer i {
     font-size: 23px;
 }
-.sidebar_links li i{
+
+.sidebar_links li i {
     color: var(--icon);
 }
-.sidebar_links li:hover{
+
+.sidebar_links li:hover {
     color: #ffffff;
 }
 
 
 
 /*===================================== Navbar =====================================*/
-.navbar_container{
+.navbar_container {
     padding: 10px;
     background-color: #ffffff;
     border: 1px solid var(--border-gray);
 }
-.navbar_userProfile i{
+
+.navbar_userProfile i {
     color: var(--icon);
 }
 
 
 
 /*===================================== Categories =====================================*/
-.categories_container{
-    border: 1px solid red;
-}
-.category_item{
+
+.category_item {
     background-color: #ffffff;
 }
 
 
 
 /*===================================== Invoice =====================================*/
-.invoice_container{
+.invoice_container {
     background-color: #ffffff;
     padding: 20px;
     width: 28%;
     height: 100%;
+}
+
+
+
+/*===================================== Menu =====================================*/
+/* .menu_container{
+    height: 65vh;
+}
+.menu_items_container{
+    height: 47vh;
+    max-height: 47vh;
+    overflow: auto;
+} */
+.menu_items {
+    background-color: #ffffff;
+    height: 25vh;
 }

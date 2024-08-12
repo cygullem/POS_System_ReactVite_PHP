@@ -14,8 +14,8 @@ const Dashboard = () => {
             <div className="flex flex-col flex-1 overflow-hidden">
                 <Navbar />
 
-                <div className="menuContent flex p-4 gap-4 overflow-auto">
-                    <div className="flex flex-col flex-1 border">
+                <div className="menuContent h-full flex p-4 gap-4 overflow-auto">
+                    <div className="flex flex-col flex-1">
                         <Categories className="mb-4" />
                         <Menu className="mr-4" />
                     </div>
