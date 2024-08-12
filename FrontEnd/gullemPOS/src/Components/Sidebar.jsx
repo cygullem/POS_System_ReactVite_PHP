@@ -8,10 +8,10 @@ const Sidebar = () => {
                 <div className="header_body flex justify-center items-start flex-1 mt-4 mb-4">
                     <ul className="sidebar_links flex flex-col gap-2">
                         <li className='p-2 flex justify-center active:scale-90 hover:bg-blue-600 rounded-lg group'>
-                            <i class="fa-solid fa-chart-simple group-hover:text-white"></i>
+                            <i class="fa-solid fa-chart-simple group-hover:text-white text-3xl"></i>
                         </li>
                         <li className='p-2 flex justify-center active:scale-90 hover:bg-blue-600 rounded-lg group'>
-                            <i class="fa-regular fa-clipboard group-hover:text-white"></i>
+                            <i class="fa-regular fa-clipboard group-hover:text-white text-3xl"></i>
                         </li>
                     </ul>
                 </div>

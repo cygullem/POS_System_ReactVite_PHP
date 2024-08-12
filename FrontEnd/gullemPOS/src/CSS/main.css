@@ -38,7 +38,6 @@
     font-size: 23px;
 }
 .sidebar_links li i{
-    font-size: 25px;
     color: var(--icon);
 }
 .sidebar_links li:hover{
