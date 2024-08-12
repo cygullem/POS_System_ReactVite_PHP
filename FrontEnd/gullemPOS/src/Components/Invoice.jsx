@@ -1,7 +1,9 @@
 const Invoice = () => {
     return (
         <>
-            <h1 className="text-3xl font-semibold cursor-pointer">Invoice</h1>
+            <div className="invoice_container rounded-lg">
+                <h1 className="text-3xl font-medium">Invoice</h1>
+            </div>
         </>
     );
 }
