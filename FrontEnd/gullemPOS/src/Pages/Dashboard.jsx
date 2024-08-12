@@ -11,10 +11,10 @@ const Dashboard = () => {
         <div className="dashboard_container flex h-screen">
             <Sidebar />
 
-            <div className="flex flex-1 overflow-hidden">
+            <div className="flex flex-col flex-1 overflow-hidden">
                 <Navbar />
 
-                <div className="menuContent flex flex-col flex-1 p-4 overflow-auto">
+                <div className="menuContent flex p-4 overflow-auto">
                     <Categories className="mb-4" />
                     <div className="flex flex-1">
                         <Menu className="flex-3 mr-4" />

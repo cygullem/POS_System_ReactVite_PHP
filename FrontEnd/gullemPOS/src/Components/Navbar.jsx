@@ -1,7 +1,10 @@
 const Navbar = () => {
     return (
         <>
-            <h1 className="text-3xl font-semibold cursor-pointer">Navbar</h1>
+            <div className="navbar_container flex justify-between gap-2">
+                <div className="navbar_search border flex-1 p-4"></div>
+                <div className="navbar_userProfile border p-4"></div>
+            </div>
         </>
     );
 }
