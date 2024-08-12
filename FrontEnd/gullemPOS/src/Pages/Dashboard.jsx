@@ -8,13 +8,12 @@ import Invoice from '../Components/Invoice';
 
 const Dashboard = () => {
     return (
-        <div className="flex flex-col h-screen">
-            <Sidebar className=" bg-gray-100" />
+        <div className="dashboard_container flex h-screen">
+            <Sidebar />
 
             <div className="flex flex-1 overflow-hidden">
                 <Navbar />
 
-                {/* Main content area */}
                 <div className="menuContent flex flex-col flex-1 p-4 overflow-auto">
                     <Categories className="mb-4" />
                     <div className="flex flex-1">

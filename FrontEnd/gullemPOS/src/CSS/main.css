@@ -8,7 +8,11 @@
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
 }
-
-.menuContent{
-    background-color: #f1f1f1;
+.dashboard_container{
+    background-color: #c9c9c9;
+}
+.sidebar{
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid red;
 }
