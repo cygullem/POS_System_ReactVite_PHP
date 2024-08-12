@@ -16,9 +16,16 @@
     background-color: #ffffff;
 }
 .sidebar_header i{
-    font-size: 50px;
+    font-size: 40px;
     color: #3772f0;
 }
 .sidebar_footer i{
     font-size: 23px;
+}
+.sidebar_links li i{
+    font-size: 25px;
+    color: #898989;
+}
+.sidebar_links li:hover{
+    color: #ffffff;
 }
