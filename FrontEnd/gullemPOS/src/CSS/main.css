@@ -59,6 +59,9 @@
 
 
 /*===================================== Categories =====================================*/
+.categories_container{
+    border: 1px solid red;
+}
 .category_item{
     background-color: #ffffff;
 }
