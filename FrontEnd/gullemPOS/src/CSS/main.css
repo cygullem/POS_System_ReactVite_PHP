@@ -67,9 +67,11 @@
 
 
 /*===================================== Categories =====================================*/
-
 .category_item {
     background-color: #ffffff;
+}
+.icon-container i{
+    color: var(--icon);
 }
 
 
