@@ -13,6 +13,9 @@ const Menu = () => {
                     <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
                     <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
                     <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
+                    <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
+                    <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
+                    <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
                 </div>
             </div>
         </>
