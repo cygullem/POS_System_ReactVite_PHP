@@ -11,8 +11,8 @@
 
 :root {
     --border-gray: #e1e1e1;
-    --bg-gray: #D4D5D6;
-    --icon: #b1b1b1;
+    --bg-gray: #d6d6d6;
+    --icon: #a2a2a2;
 }
 
 ::-webkit-scrollbar {
