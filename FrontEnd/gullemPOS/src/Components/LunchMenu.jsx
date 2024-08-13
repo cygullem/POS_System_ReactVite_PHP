@@ -1,9 +1,9 @@
-const BreakfastMenu = () => {
+const LunchMenu = () => {
     return (
         <>
             <div className="menu_container h-full overflow-auto">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-3xl font-semibold">Breakfast Menu</h1>
+                    <h1 className="text-3xl font-semibold">Lunch Menu</h1>
                     <button className="flex items-center p-2 gap-3 text-sm rounded-lg bg-white active:scale-95 group">
                         <i class="fa-solid fa-utensils text-xl group-hover:text-blue-700"></i>
                         Add Menu
@@ -25,4 +25,4 @@ const BreakfastMenu = () => {
     );
 }
 
-export default BreakfastMenu;
+export default LunchMenu;
