@@ -6,8 +6,8 @@ const Sidebar = () => {
 
     return (
         <div className="sidebar flex flex-col items-center">
-            <div className="sidebar_header rounded-xl flex items-center justify-center mt-2 mb-10">
-                <i className="fa-brands fa-slack"></i>
+            <div className="sidebar_header rounded-xl flex items-center justify-center mt-2 mb-10 group">
+                <i className="fa-brands fa-slack transition duration-300 ease-in-out group-hover:rotate-[360deg]"></i>
             </div>
             <div className="header_body flex justify-center items-start flex-1 mt-4 mb-4">
                 <ul className="sidebar_links flex flex-col gap-2">
