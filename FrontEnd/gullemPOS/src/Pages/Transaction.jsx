@@ -1,7 +1,13 @@
+import Navbar from "../Components/Navbar";
+
 const Transaction = () => {
     return (
         <>
-            <h1>Transaction</h1>
+            <Navbar />
+
+            <div className="transaction_container h-full w-full">
+                <h1>Transantion History</h1>
+            </div>
         </>
     );
 }

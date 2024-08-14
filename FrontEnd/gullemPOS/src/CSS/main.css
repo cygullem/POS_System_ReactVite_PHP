@@ -142,3 +142,9 @@
     background-color: #ffffff;
     height: 25vh;
 }
+
+
+
+.transaction_container{
+    background-color: var(--bg-gray);
+}
