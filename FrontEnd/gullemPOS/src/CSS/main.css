@@ -52,6 +52,47 @@
     color: #ffffff;
 }
 
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 50%;
+    left: 115%;
+    transform: translateY(-50%);
+    background-color: var(--button);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+[data-tooltip]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 98%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--button) transparent transparent;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+    opacity: 1;
+}
+
 
 
 /*===================================== Navbar =====================================*/
@@ -71,7 +112,8 @@
 .category_item {
     background-color: #ffffff;
 }
-.icon-container i{
+
+.icon-container i {
     color: var(--icon);
 }
 
