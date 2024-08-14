@@ -7,8 +7,8 @@ const Invoice = () => {
         <>
             <div className="invoice_container rounded-lg flex flex-col justify-between p-3">
                 <h1 className="text-3xl font-medium">Invoice</h1>
-                <div className="meals border h-full">
-
+                <div className="meals border h-full p-2">
+                    <h4>hehehe</h4>
                 </div>
                 <div className="invoice_payment_summary border p-3 rounded-lg bg-white shadow-lg flex flex-col justify-between">
                     <div>
