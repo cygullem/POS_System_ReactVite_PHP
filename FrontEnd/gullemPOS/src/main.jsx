@@ -7,8 +7,6 @@ import './CSS/main.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <BrowserRouter>
-            <AppRoutes />
-        </BrowserRouter>
-    </React.StrictMode>,
+        <AppRoutes />
+    </React.StrictMode>
 )

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
     const [activeItem, setActiveItem] = useState('Dashboard');
@@ -11,18 +12,16 @@ const Sidebar = () => {
             <div className="header_body flex justify-center items-start flex-1 mt-4 mb-4">
                 <ul className="sidebar_links flex flex-col gap-2">
                     <li
-                        className={`relative p-3 flex justify-center active:scale-90 rounded-lg group ${activeItem === 'Dashboard' ? 'bg-blue-600 text-white' : 'hover:bg-blue-600'}`}
-                        data-tooltip="Dashboard"
-                        onClick={() => setActiveItem('Dashboard')}
-                    >
-                        <i className={`fa-solid fa-chart-simple text-3xl ${activeItem === 'Dashboard' ? 'text-white' : 'group-hover:text-white'}`}></i>
+                        className={`relative p-3 flex justify-center active:scale-90 rounded-lg group ${activeItem === 'Dashboard' ? 'bg-blue-600 text-white' : 'hover:bg-blue-600'}`} data-tooltip="Dashboard" onClick={() => setActiveItem('Dashboard')}>
+                        <NavLink to="/" className={({ isActive }) => `flex justify-center items-center w-full ${isActive ? 'text-white' : 'hover:text-white'}`}>
+                            <i className={`fa-solid fa-chart-simple text-3xl ${activeItem === 'Dashboard' ? 'text-white' : 'group-hover:text-white'}`}></i>
+                        </NavLink>
                     </li>
                     <li
-                        className={`relative p-3 flex justify-center active:scale-90 rounded-lg group ${activeItem === 'Transactions' ? 'bg-blue-600 text-white' : 'hover:bg-blue-600'}`}
-                        data-tooltip="Transactions"
-                        onClick={() => setActiveItem('Transactions')}
-                    >
-                        <i className={`fa-regular fa-clipboard text-3xl ${activeItem === 'Transactions' ? 'text-white' : 'group-hover:text-white'}`}></i>
+                        className={`relative p-3 flex justify-center active:scale-90 rounded-lg group ${activeItem === 'Transactions' ? 'bg-blue-600 text-white' : 'hover:bg-blue-600'}`} data-tooltip="Transactions" onClick={() => setActiveItem('Transactions')}>
+                        <NavLink to="/transaction" className={({ isActive }) => `flex justify-center items-center w-full ${isActive ? 'text-white' : 'hover:text-white'}`}>
+                            <i className={`fa-regular fa-clipboard text-3xl ${activeItem === 'Transactions' ? 'text-white' : 'group-hover:text-white'}`}></i>
+                        </NavLink>
                     </li>
                 </ul>
             </div>

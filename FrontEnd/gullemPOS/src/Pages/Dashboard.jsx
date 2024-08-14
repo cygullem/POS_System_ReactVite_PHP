@@ -9,8 +9,6 @@ import Invoice from '../Components/Invoice';
 const Dashboard = () => {
     return (
         <div className="dashboard_container flex h-screen">
-            <Sidebar />
-
             <div className="flex flex-col flex-1 overflow-hidden">
                 <Navbar />
 
