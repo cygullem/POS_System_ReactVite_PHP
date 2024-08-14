@@ -13,7 +13,7 @@ const BreakfastMenu = () => {
                         </span>
                     </button>
                 </div>
-                <div className="menu_items_container grid grid-cols-3 mt-4 gap-4">
+                <div className="menu_items_container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-4 gap-4">
                     <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
                     <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>
                     <div className="menu_items rounded-lg cursor-pointer active:scale-95"></div>

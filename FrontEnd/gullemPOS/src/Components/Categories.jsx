@@ -1,7 +1,7 @@
 const Categories = () => {
     return (
         <>
-            <div className="categories_container grid grid-cols-4 gap-4 mb-10">
+            <div className="categories_container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
 
                 <div className="category_item flex items-center h-20 p-4 rounded-lg hover:bg-blue-700 hover:shadow-lg active:scale-95 group select-none">
                     <div className="icon-container flex justify-center items-center w-12 h-12 bg-white rounded-lg">
