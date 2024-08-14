@@ -16,7 +16,7 @@ const Dashboard = () => {
                         <Categories className="mb-4" />
                         <BreakfastMenu className="mr-4" />
                     </div>
-                    <Invoice className="flex-1 bg-white p-4 rounded-lg shadow-lg" />
+                    <Invoice className="flex-1 rounded-lg shadow-lg" />
                 </div>
             </div>
         </div>
