@@ -12,19 +12,19 @@ const Invoice = () => {
                 </div>
                 <div className="invoice_payment_summary border p-3 rounded-lg bg-white shadow-lg flex flex-col justify-between">
                     <div>
-                        <h2 className="text-xl font-bold mb-2">Payment Summary</h2>
+                        <h2 className="text-lg font-bold mb-2">Payment Summary</h2>
                         <div className="flex justify-between text-lg mb-2">
                             <span>Sub Total</span>
-                            <span className="font-bold">$131.2</span>
+                            <span className="font-bold">$000.0</span>
                         </div>
                         <div className="flex justify-between text-lg mb-2">
-                            <span>Tax</span>
-                            <span className="font-bold">$5.2</span>
+                            <span>Dsicount</span>
+                            <span className="font-bold">$0.0</span>
                         </div>
                         <div className="border-b border-dashed border-gray-400 mb-2"></div>
-                        <div className="flex justify-between text-lg font-bold">
+                        <div className="flex justify-between text-md font-bold">
                             <span>Total Payment</span>
-                            <span>$136.4</span>
+                            <span>$000.0</span>
                         </div>
                     </div>
 
