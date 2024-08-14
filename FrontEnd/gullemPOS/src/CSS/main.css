@@ -105,6 +105,9 @@
 .navbar_userProfile i {
     color: var(--icon);
 }
+.search_input{
+    padding: .75rem 3rem .75rem;
+}
 
 
 
