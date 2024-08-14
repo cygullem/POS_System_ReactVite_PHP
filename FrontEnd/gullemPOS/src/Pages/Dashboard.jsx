@@ -1,7 +1,6 @@
 import React from 'react';
 import '../CSS/main.css';
 import Navbar from '../Components/Navbar';
-import Sidebar from '../Components/Sidebar';
 import Categories from '../Components/Categories';
 import BreakfastMenu from '../Components/BreakfastMenu';
 import Invoice from '../Components/Invoice';
