@@ -1,27 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const AddMenuModal = ({ isOpen, closeModal }) => {
     if (!isOpen) return null;
 
+    const [category, setCategory] = useState('');
+    const [name, setName] = useState('');
+    const [sku, setSku] = useState('');
+    const [price, setPrice] = useState('');
+    const [error, setError] = useState(''); // To store error messages
+
+    const add = async (e) => {
+        e.preventDefault();
+        setError(''); // Clear any previous errors
+        try {
+            const response = await axios.post('http://localhost/PHPPOST-main/addProduct.php', {
+                name,
+                sku,
+                category,
+                price
+            });
+
+            console.log('Response:', response.data);
+
+            if (response.data.res === 'success') {
+                alert('Menu added successfully');
+                closeModal();
+            } else {
+                setError(`Failed to add menu: ${response.data.message}`);
+            }
+        } catch (error) {
+            console.error('Error adding menu:', error);
+            setError('An error occurred. Please try again.');
+        }
+    };
+
     return (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg w-[35%] relative">
-                <div onClick={closeModal} className="bg-white text-black  h-[35px] w-[35px] flex items-center justify-center p-2 rounded-[50%] active:scale-90 absolute top-0 right-[-2.5rem] group">
-                    <i class="fa-solid fa-xmark group-hover:rotate-[360deg] transition duration-300 ease-in-out"></i>
-                </div>
+                <button
+                    onClick={closeModal}
+                    className="absolute top-2 right-2 text-black p-2 rounded-full hover:bg-gray-200"
+                >
+                    <i className="fa-solid fa-xmark"></i>
+                </button>
                 <h2 className="text-xl font-semibold mb-4">Add New Menu</h2>
-                <form>
+                {error && <p className="text-red-500 mb-4">{error}</p>} {/* Show error message if any */}
+                <form onSubmit={add}>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Category</label>
                         <select
                             className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                         >
                             <option value="">Select Category</option>
                             <option value="breakfast">Breakfast</option>
                             <option value="lunch">Lunch</option>
                             <option value="dinner">Dinner</option>
                             <option value="soup">Soup</option>
-                            <option value="deserts">Desserts</option>
+                            <option value="desserts">Desserts</option>
                             <option value="sidedish">Sidedish</option>
                             <option value="appetizer">Appetizer</option>
                             <option value="beverages">Beverages</option>
@@ -32,6 +70,8 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
                         <input
                             type="text"
                             className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                     <div className="mb-4">
@@ -39,6 +79,8 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
                         <input
                             type="text"
                             className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            value={sku}
+                            onChange={(e) => setSku(e.target.value)}
                         />
                     </div>
                     <div className="mb-4">
@@ -46,10 +88,11 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
                         <input
                             type="number"
                             className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
                         />
                     </div>
                     <div className="flex justify-end">
-
                         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-lg active:scale-95">
                             Add Menu
                         </button>
