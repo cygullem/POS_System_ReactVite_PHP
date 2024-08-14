@@ -5,7 +5,7 @@ const Invoice = () => {
 
     return (
         <>
-            <div className="invoice_container rounded-lg flex flex-col justify-between p-3">
+            <div className="invoice_container max-w-[25rem] rounded-lg flex flex-col justify-between p-3">
                 <h1 className="text-3xl font-medium">Invoice</h1>
                 <div className="meals border h-full p-2">
                     <h4>hehehe</h4>
