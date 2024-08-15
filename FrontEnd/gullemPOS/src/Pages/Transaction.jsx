@@ -18,7 +18,6 @@ const Transaction = () => {
                 setTransactions(data);
                 console.log(data);
 
-                // Process and group data by day
                 const groupedByDay = data.reduce((acc, transaction) => {
                     const date = new Date(transaction.time).toDateString();
                     if (!acc[date]) {
@@ -34,7 +33,6 @@ const Transaction = () => {
                     return acc;
                 }, {});
 
-                // Convert grouped data to an array
                 const dailyTotalsArray = Object.keys(groupedByDay).map(date => ({
                     date,
                     total: groupedByDay[date].total,
@@ -60,7 +58,6 @@ const Transaction = () => {
         setShowModal(false);
     };
 
-    // Function to format time from timestamp
     const formatTime = (timestamp) => {
         const date = new Date(timestamp);
         return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); // Format as 'HH:MM:SS'
@@ -77,7 +74,7 @@ const Transaction = () => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Price</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Amount Per Day</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
                             </tr>
                         </thead>
@@ -87,7 +84,7 @@ const Transaction = () => {
                                     <td className="px-6 py-4 whitespace-nowrap">{new Date(day.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{day.total.toFixed(2)}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <button className="text-blue-500 hover:text-blue-700" onClick={() => openModal(day.date)}>Details</button>
+                                        <button className="text-blue-500 hover:text-blue-700" onClick={() => openModal(day.date)}>See Details</button>
                                     </td>
                                 </tr>
                             ))}
@@ -100,7 +97,7 @@ const Transaction = () => {
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={closeModal}>
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl max-h-[80vh] overflow-auto" onClick={e => e.stopPropagation()}>
-                        <h2 className="text-2xl font-bold mb-4">Purchase this day {new Date(selectedDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</h2>
+                        <h2 className="text-2xl font-bold mb-4">Total order on {new Date(selectedDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</h2>
                         <button onClick={closeModal} className="absolute z-50 top-0 right-[-2rem] text-black"><i class="fa-solid fa-xmark"></i></button>
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-100">

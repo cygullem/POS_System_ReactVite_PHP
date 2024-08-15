@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { toast, Toaster } from 'sonner'; 
+import { toast, Toaster } from 'sonner';
 
 const Invoice = () => {
     const [activeMethod, setActiveMethod] = useState('CreditCard');
@@ -87,7 +87,7 @@ const Invoice = () => {
 
         if (validItems.length === 0) {
             toast.error('Cannot proceed with payment. All items have zero quantity.');
-            return; 
+            return;
         }
 
         try {
@@ -104,12 +104,12 @@ const Invoice = () => {
             });
 
             if (res.data.message === "Transaction completed and checkout data cleared successfully") {
-                console.log("Purchase successful:", res.data.message);
-                toast.success('Purchase completed successfully!');
-                window.location.reload();
+                toast.success('Purchase completed successfully!', res.data.message);
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
             } else {
-                toast.error('Purchase failed. Please try again.');
-                console.error("Purchase failed:", res.data.message);
+                toast.error('Purchase failed. Please try again.', res.data.message);
             }
         } catch (error) {
             toast.error('An error occurred while processing the purchase.');
@@ -202,7 +202,7 @@ const Invoice = () => {
                 </button>
             </div>
 
-            <Toaster richColors expand={true} position="bottom-left" />
+            <Toaster richColors expand={true} position="top-right" closeButton />
         </div>
     );
 }

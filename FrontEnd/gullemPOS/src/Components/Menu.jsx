@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddMenuModal from "./AddMenuModal";
+import { toast, Toaster } from 'sonner';
+import Meals from '../Images/meals.png';
 
 const Menu = ({ category }) => {
     const [showAddMenuModal, setShowAddMenuModal] = useState(false);
@@ -9,12 +11,11 @@ const Menu = ({ category }) => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [viewList, setViewList] = useState(false);
     const [backButtonVisible, setBackButtonVisible] = useState(false);
-    const [quantity, setQuantity] = useState(1); // Default quantity
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
         if (!category) return;
 
-        // Reset view list and selected item on category change
         setViewList(false);
         setSelectedItem(null);
         setBackButtonVisible(false);
@@ -34,7 +35,7 @@ const Menu = ({ category }) => {
                 }, []);
                 setMenuItems(consolidatedItems);
             } catch (error) {
-                console.error("Error fetching menu items:", error);
+                toast.error("Error fetching menu items.");
             }
         };
 
@@ -47,9 +48,9 @@ const Menu = ({ category }) => {
             const newItems = res.data;
             setProduct(newItems);
             setViewList(true);
-            setBackButtonVisible(true); // Show the back button
+            setBackButtonVisible(true);
         } catch (error) {
-            console.error("Error fetching data for selected item:", error);
+            toast.error("Error fetching data for selected item.");
         }
     };
 
@@ -57,9 +58,6 @@ const Menu = ({ category }) => {
         setSelectedItem(item.name);
         setViewList(true);
 
-        console.log(item);
-
-        // Send POST request with selected item data and quantity
         try {
             const response = await axios.post('http://localhost/PHPPOST-main/checkout.php', {
                 name: item.name,
@@ -71,21 +69,25 @@ const Menu = ({ category }) => {
             });
 
             if (response.data.res === 'success') {
-                alert('Item added to the order');
+                toast.success('Item added to the order');
+                setTimeout(() => {
+                    location.reload();
+                }, 2000); 
             } else {
-                console.error("Failed to add item to order:", response.data.message);
+                toast.error("Failed to add item to order.");
             }
         } catch (error) {
-            console.error("Error adding item to order:", error);
+            toast.error("Error adding item to order.");
         }
 
         fetchData(item.name);
     };
 
+
     const handleBackButtonClick = () => {
-        setViewList(false); // Reset to the initial view
-        setSelectedItem(null); // Reset the selected item
-        setBackButtonVisible(false); // Hide the back button
+        setViewList(false);
+        setSelectedItem(null);
+        setBackButtonVisible(false);
     };
 
     return (
@@ -118,13 +120,21 @@ const Menu = ({ category }) => {
                             menuItems.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="menu_items p-4 bg-white rounded-lg shadow-md cursor-pointer active:scale-95"
+                                    className="menu_items flex flex-col p-3 bg-white rounded-lg shadow-md cursor-pointer active:scale-95"
                                     onClick={() => fetchData(item.name)}
                                 >
-                                    <h3 className="text-lg font-semibold">{item.name}</h3>
-                                    <p className="text-gray-500">{item.category}</p>
-                                    <p className="text-sm text-gray-700">{item.sku}</p>
-                                    <p className="font-semibold">${item.price}</p>
+                                    <div className='flex gap-2 mb-1'>
+                                        <img src={Meals} alt="Meals" className="w-[100px] h-[100px] rounded-xl" />
+                                        <div>
+                                            <h3 className="text-md font-medium">{item.name}</h3>
+                                            <p className="text-gray-500">{item.category}</p>
+                                            <p className='text-xs text-gray-400 text-wrap'>Delicious, satisfying, and perfectly seasoned, this meal was pure bliss!</p>
+                                        </div>
+                                    </div>
+                                    <div className='flex items-end justify-between h-full mt-4'>
+                                        <p className="text-gray-700">{item.sku}</p>
+                                        <p className="text-3xl text-blue-700 font-semibold">${item.price}</p>
+                                    </div>
                                 </div>
                             ))
                         ) : (
@@ -135,13 +145,21 @@ const Menu = ({ category }) => {
                             product.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="menu_items p-4 bg-white rounded-lg shadow-md cursor-pointer active:scale-95"
-                                    onClick={() => handleItemClick(item)}
+                                    className="menu_items relative p-4 bg-white rounded-lg shadow-md"
                                 >
+                                    <i className="fa-regular fa-circle-check text-2xl font-medium absolute top-0 right-1 cursor-pointer active:scale-95 hover:text-green-500" 
+                                        onClick={() => handleItemClick(item)}>
+                                    </i>
                                     <h3 className="text-lg font-semibold">{item.name}</h3>
                                     <p className="text-gray-500">{item.category}</p>
                                     <p className="text-sm text-gray-700">{item.sku}</p>
-                                    <p className="font-semibold">${item.price}</p>
+                                    <div className='flex items-center justify-between'>
+                                        <p className="text-3xl text-blue-700 font-semibold">${item.price}</p>
+                                        <div className='flex items-center gap-2'>
+                                            <i class="fa-solid fa-pen-to-square text-lg text-yellow-500"></i>
+                                            <i class="fa-solid fa-trash-can text-lg text-red-500"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             ))
                         ) : (
@@ -149,6 +167,8 @@ const Menu = ({ category }) => {
                         )
                     )}
                 </div>
+
+                <Toaster richColors expand={true} position="top-right" closeButton />
             </div>
 
             {showAddMenuModal && <AddMenuModal isOpen={showAddMenuModal} closeModal={() => setShowAddMenuModal(false)} />}
