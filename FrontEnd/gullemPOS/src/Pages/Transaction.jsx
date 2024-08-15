@@ -99,23 +99,23 @@ const Transaction = () => {
             {/* Custom Modal */}
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={closeModal}>
-                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl w-full" onClick={e => e.stopPropagation()}>
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl max-h-[80vh] overflow-auto" onClick={e => e.stopPropagation()}>
                         <h2 className="text-2xl font-bold mb-4">Purchase this day {new Date(selectedDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</h2>
-                        <button onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">X</button>
+                        <button onClick={closeModal} className="absolute z-50 top-0 right-[-2rem] text-black"><i class="fa-solid fa-xmark"></i></button>
                         <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
+                            <thead className="bg-gray-100">
                                 <tr>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product ID</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Name</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Price</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Amount</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {modalData.flatMap(transaction =>
                                     transaction.products.map(product => (
-                                        <tr key={product.id}>
+                                        <tr key={product.id} className="hover hover:bg-slate-200">
                                             <td className="px-6 py-4 whitespace-nowrap">{product.id}</td>
                                             <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
                                             <td className="px-6 py-4 whitespace-nowrap">{product.quantity}</td>

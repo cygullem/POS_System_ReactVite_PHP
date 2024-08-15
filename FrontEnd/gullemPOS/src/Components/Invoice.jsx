@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import { toast, Toaster } from 'sonner'; 
 
 const Invoice = () => {
     const [activeMethod, setActiveMethod] = useState('CreditCard');
@@ -31,7 +32,9 @@ const Invoice = () => {
             if (Array.isArray(data)) {
                 let newSubtotal = 0;
                 data.forEach(item => {
-                    newSubtotal += parseFloat(item.total);
+                    if (item.quantity > 0) {
+                        newSubtotal += parseFloat(item.total);
+                    }
                 });
 
                 const newDiscount = parseFloat(discount);
@@ -63,8 +66,12 @@ const Invoice = () => {
                 console.log("Server response:", res.data);
 
                 if (res.data.message === "Quantity and total updated successfully") {
-                    updatedData[index].quantity = newQuantity;
-                    updatedData[index].total = (itemPrice * newQuantity).toFixed(2);
+                    if (newQuantity === 0) {
+                        updatedData.splice(index, 1);
+                    } else {
+                        updatedData[index].quantity = newQuantity;
+                        updatedData[index].total = (itemPrice * newQuantity).toFixed(2);
+                    }
                     setData(updatedData);
                 } else {
                     console.error("Update failed:", res.data.message);
@@ -76,8 +83,15 @@ const Invoice = () => {
     };
 
     const handlePurchase = async () => {
+        const validItems = data.filter(item => parseInt(item.quantity) > 0);
+
+        if (validItems.length === 0) {
+            toast.error('Cannot proceed with payment. All items have zero quantity.');
+            return; 
+        }
+
         try {
-            const checkoutData = JSON.stringify(data);
+            const checkoutData = JSON.stringify(validItems);
             const totalPrice = parseFloat(subtotal) - parseFloat(discount);
 
             const res = await axios.post('http://localhost/PHPPOST-main/purchase.php', {
@@ -91,12 +105,14 @@ const Invoice = () => {
 
             if (res.data.message === "Transaction completed and checkout data cleared successfully") {
                 console.log("Purchase successful:", res.data.message);
-                alert('Successfully Purchase')
-                window.location.reload()
+                toast.success('Purchase completed successfully!');
+                window.location.reload();
             } else {
+                toast.error('Purchase failed. Please try again.');
                 console.error("Purchase failed:", res.data.message);
             }
         } catch (error) {
+            toast.error('An error occurred while processing the purchase.');
             console.error("Error completing purchase:", error);
         }
     };
@@ -104,10 +120,10 @@ const Invoice = () => {
     return (
         <div className="invoice_container max-w-[25rem] rounded-lg flex flex-col justify-between p-3">
             <h1 className="text-3xl font-medium">Invoice</h1>
-            <div className="meals border h-full p-2">
+            <div className="meals h-full overflow-auto">
                 {data.length > 0 ? (
                     data.map((item, index) => (
-                        <div key={item.id} className="flex justify-between mb-2">
+                        <div key={item.id} className="flex items-center justify-between mb-2 bg-slate-300 p-2 rounded-lg select-none cursor-pointer">
                             <div>
                                 <h4 className="text-lg font-semibold">{item.name}</h4>
                                 <p className="text-sm text-gray-600">{item.sku}</p>
@@ -127,7 +143,7 @@ const Invoice = () => {
                                     +
                                 </button>
                             </div>
-                            <span className="font-bold">${parseFloat(item.total).toFixed(2)}</span>
+                            <span className="font-bold bg-white p-1 rounded-lg">${parseFloat(item.total).toFixed(2)}</span>
                         </div>
                     ))
                 ) : (
@@ -135,7 +151,6 @@ const Invoice = () => {
                 )}
             </div>
 
-            {/* Payment summary and methods */}
             <div className="invoice_payment_summary border p-3 rounded-lg bg-white shadow-lg flex flex-col justify-between">
                 <div>
                     <h2 className="text-lg font-bold mb-2">Payment Summary</h2>
@@ -155,7 +170,6 @@ const Invoice = () => {
                 </div>
 
                 <div className="payment_methods bg-gray-100 p-2 mt-2 rounded-lg flex justify-around items-center">
-                    {/* Payment methods code */}
                     <button
                         className={`flex flex-col items-center justify-center active:scale-95 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${activeMethod === 'CreditCard' ? 'bg-white text-blue-600' : 'bg-gray-200'}`}
                         onClick={() => setActiveMethod('CreditCard')}
@@ -184,11 +198,13 @@ const Invoice = () => {
                     onClick={handlePurchase}
                 >
                     <i className="fa-solid fa-sack-dollar transition duration-300 ease-in-out group-hover:rotate-[360deg]"></i>
-                    <span className="ml-2">Confirm Payment</span>
+                    <span className="ml-2">Proceed to Payment</span>
                 </button>
             </div>
+
+            <Toaster richColors expand={true} position="bottom-left" />
         </div>
     );
-};
+}
 
 export default Invoice;
