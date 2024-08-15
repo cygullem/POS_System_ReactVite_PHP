@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{E5CDAC00-1C86-43EE-9AF4-D095F6BC5154}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{A076FD0C-2EB5-4E2A-8BDE-958C4B8DD11E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gullemDapper", "BackEnd\gullemDapper\gullemDapper.csproj", "{E9D1766D-D708-4192-9945-A7E0399E07DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gullemDapper", "BackEnd\gullemDapper\gullemDapper.csproj", "{500D2A0F-B7EE-450B-9C54-4E3AE5C1191F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9D1766D-D708-4192-9945-A7E0399E07DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9D1766D-D708-4192-9945-A7E0399E07DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9D1766D-D708-4192-9945-A7E0399E07DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9D1766D-D708-4192-9945-A7E0399E07DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500D2A0F-B7EE-450B-9C54-4E3AE5C1191F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500D2A0F-B7EE-450B-9C54-4E3AE5C1191F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500D2A0F-B7EE-450B-9C54-4E3AE5C1191F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500D2A0F-B7EE-450B-9C54-4E3AE5C1191F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E9D1766D-D708-4192-9945-A7E0399E07DF} = {E5CDAC00-1C86-43EE-9AF4-D095F6BC5154}
+		{500D2A0F-B7EE-450B-9C54-4E3AE5C1191F} = {A076FD0C-2EB5-4E2A-8BDE-958C4B8DD11E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {524F7884-45F7-4376-A65B-B37AA669BE01}

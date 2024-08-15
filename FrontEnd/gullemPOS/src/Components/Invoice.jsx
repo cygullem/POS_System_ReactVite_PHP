@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 
 const Invoice = () => {
+    const [activeMethod, setActiveMethod] = useState('CreditCard');
     const [data, setData] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
-    const [discount, setDiscount] = useState(0); // Update this if you have discount logic
+    const [discount, setDiscount] = useState(0);
     const [totalPayment, setTotalPayment] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await axios.get('http://localhost/PHPPOST-main/fetchCheckout.php');
-                console.log("Fetched data:", res.data); // Log the response data
+                console.log("Fetched data:", res.data);
                 if (Array.isArray(res.data)) {
                     setData(res.data);
                 } else {
@@ -26,7 +27,6 @@ const Invoice = () => {
     }, []);
 
     useEffect(() => {
-        // Calculate the subtotal, discount, and total payment whenever `data` changes
         const calculateTotals = () => {
             if (Array.isArray(data)) {
                 let newSubtotal = 0;
@@ -34,7 +34,7 @@ const Invoice = () => {
                     newSubtotal += parseFloat(item.total);
                 });
 
-                const newDiscount = parseFloat(discount); // Replace this with actual discount calculation if needed
+                const newDiscount = parseFloat(discount);
 
                 setSubtotal(newSubtotal.toFixed(2));
                 setDiscount(newDiscount.toFixed(2));
@@ -60,7 +60,7 @@ const Invoice = () => {
                     quantity: newQuantity
                 });
 
-                console.log("Server response:", res.data); // Debug the response
+                console.log("Server response:", res.data);
 
                 if (res.data.message === "Quantity and total updated successfully") {
                     updatedData[index].quantity = newQuantity;
@@ -77,8 +77,8 @@ const Invoice = () => {
 
     const handlePurchase = async () => {
         try {
-            const checkoutData = JSON.stringify(data); // Convert data to JSON format
-            const totalPrice = parseFloat(subtotal) - parseFloat(discount); // Ensure calculations are correct
+            const checkoutData = JSON.stringify(data);
+            const totalPrice = parseFloat(subtotal) - parseFloat(discount);
 
             const res = await axios.post('http://localhost/PHPPOST-main/purchase.php', {
                 checkoutData: checkoutData,
@@ -156,6 +156,27 @@ const Invoice = () => {
 
                 <div className="payment_methods bg-gray-100 p-2 mt-2 rounded-lg flex justify-around items-center">
                     {/* Payment methods code */}
+                    <button
+                        className={`flex flex-col items-center justify-center active:scale-95 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${activeMethod === 'CreditCard' ? 'bg-white text-blue-600' : 'bg-gray-200'}`}
+                        onClick={() => setActiveMethod('CreditCard')}
+                    >
+                        <i className={`fa-solid fa-credit-card text-2xl mb-1 ${activeMethod === 'CreditCard' ? 'text-blue-600' : ''}`}></i>
+                        <span className={`text-sm font-semibold ${activeMethod === 'CreditCard' ? 'text-blue-600' : ''}`}>Credit Card</span>
+                    </button>
+                    <button
+                        className={`flex flex-col items-center justify-center active:scale-95 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${activeMethod === 'Paylater' ? 'bg-white text-blue-600' : 'bg-gray-200'}`}
+                        onClick={() => setActiveMethod('Paylater')}
+                    >
+                        <i className={`fa-solid fa-file-invoice text-2xl mb-1 ${activeMethod === 'Paylater' ? 'text-blue-600' : ''}`}></i>
+                        <span className={`text-sm font-semibold ${activeMethod === 'Paylater' ? 'text-blue-600' : ''}`}>Paylater</span>
+                    </button>
+                    <button
+                        className={`flex flex-col items-center justify-center active:scale-95 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${activeMethod === 'CashPayout' ? 'bg-white text-blue-600' : 'bg-gray-200'}`}
+                        onClick={() => setActiveMethod('CashPayout')}
+                    >
+                        <i className={`fa-solid fa-dollar-sign text-2xl mb-1 ${activeMethod === 'CashPayout' ? 'text-blue-600' : ''}`}></i>
+                        <span className={`text-sm font-semibold ${activeMethod === 'CashPayout' ? 'text-blue-600' : ''}`}>Cash Payout</span>
+                    </button>
                 </div>
 
                 <button
@@ -163,7 +184,7 @@ const Invoice = () => {
                     onClick={handlePurchase}
                 >
                     <i className="fa-solid fa-sack-dollar transition duration-300 ease-in-out group-hover:rotate-[360deg]"></i>
-                    <span className="ml-2">Place An Order</span>
+                    <span className="ml-2">Confirm Payment</span>
                 </button>
             </div>
         </div>
