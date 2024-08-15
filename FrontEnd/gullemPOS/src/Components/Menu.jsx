@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddMenuModal from "./AddMenuModal";
 import EditMenuModal from './EditMenuModal';
+import DeleteMenuModal from './DeleteMenuModal';
 import { toast, Toaster } from 'sonner';
 import Meals from '../Images/meals.png';
 
 const Menu = ({ category }) => {
     const [showAddMenuModal, setShowAddMenuModal] = useState(false);
     const [showEditMenuModal, setShowEditMenuModal] = useState(false);
+    const [showDeleteMenuModal, setShowDeleteMenuModal] = useState(false);
     const [menuItems, setMenuItems] = useState([]);
     const [product, setProduct] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -84,6 +86,7 @@ const Menu = ({ category }) => {
 
         fetchData(item.name);
     };
+    
 
     const handleBackButtonClick = () => {
         setViewList(false);
@@ -94,6 +97,11 @@ const Menu = ({ category }) => {
     const handleEditClick = (item) => {
         setSelectedItem(item);
         setShowEditMenuModal(true);
+    };
+
+    const handleDeleteClick = (item) => {
+        setSelectedItem(item);
+        setShowDeleteMenuModal(true);
     };
 
     return (
@@ -174,7 +182,10 @@ const Menu = ({ category }) => {
                                                 onClick={() => handleEditClick(item)}
                                             ></i>
                                             {/* click to delete product */}
-                                            <i className="fa-solid fa-trash-can text-xl text-red-500 cursor-pointer"></i>
+                                            <i 
+                                                className="fa-solid fa-trash-can text-xl text-red-500 cursor-pointer"
+                                                onClick={() => handleDeleteClick(item)}
+                                            ></i>
                                         </div>
                                     </div>
                                 </div>
@@ -190,6 +201,7 @@ const Menu = ({ category }) => {
 
             {showAddMenuModal && <AddMenuModal isOpen={showAddMenuModal} closeModal={() => setShowAddMenuModal(false)} />}
             {showEditMenuModal && <EditMenuModal isOpen={showEditMenuModal} closeModal={() => setShowEditMenuModal(false)} product={selectedItem} />}
+            {showDeleteMenuModal && <DeleteMenuModal isOpen={showDeleteMenuModal} closeModal={() => setShowDeleteMenuModal(false)} product={selectedItem} />}
         </>
     );
 };
