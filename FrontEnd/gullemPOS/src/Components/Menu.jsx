@@ -86,7 +86,6 @@ const Menu = ({ category }) => {
 
         fetchData(item.name);
     };
-    
 
     const handleBackButtonClick = () => {
         setViewList(false);
@@ -100,8 +99,8 @@ const Menu = ({ category }) => {
     };
 
     const handleDeleteClick = (item) => {
-        setSelectedItem(item);
-        setShowDeleteMenuModal(true);
+        setSelectedItem(item);  // Ensure the selected item is set
+        setShowDeleteMenuModal(true);  // Open the delete modal
     };
 
     return (
@@ -155,7 +154,6 @@ const Menu = ({ category }) => {
                             <p>No menu items available for this category</p>
                         )
                     ) : (
-                        // Handle Product edit and Delete
                         product.length > 0 ? (
                             product.map((item) => (
                                 <div
@@ -176,13 +174,11 @@ const Menu = ({ category }) => {
                                     <div className='flex items-center justify-between mt-2'>
                                         <p className="text-3xl text-blue-700 font-semibold">${item.price}</p>
                                         <div className='flex items-end justify-between gap-2'>
-                                            {/* click to edit product */}
                                             <i
                                                 className="fa-solid fa-pen-to-square text-xl text-yellow-500 cursor-pointer"
                                                 onClick={() => handleEditClick(item)}
                                             ></i>
-                                            {/* click to delete product */}
-                                            <i 
+                                            <i
                                                 className="fa-solid fa-trash-can text-xl text-red-500 cursor-pointer"
                                                 onClick={() => handleDeleteClick(item)}
                                             ></i>
@@ -201,7 +197,7 @@ const Menu = ({ category }) => {
 
             {showAddMenuModal && <AddMenuModal isOpen={showAddMenuModal} closeModal={() => setShowAddMenuModal(false)} />}
             {showEditMenuModal && <EditMenuModal isOpen={showEditMenuModal} closeModal={() => setShowEditMenuModal(false)} product={selectedItem} />}
-            {showDeleteMenuModal && <DeleteMenuModal isOpen={showDeleteMenuModal} closeModal={() => setShowDeleteMenuModal(false)} product={selectedItem} />}
+            {showDeleteMenuModal && <DeleteMenuModal isOpen={showDeleteMenuModal} closeModal={() => setShowDeleteMenuModal(false)} item={selectedItem} />}  {/* Pass the selected item */}
         </>
     );
 };
