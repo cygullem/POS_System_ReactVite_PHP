@@ -60,7 +60,7 @@ const Transaction = () => {
 
     const formatTime = (timestamp) => {
         const date = new Date(timestamp);
-        return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); // Format as 'HH:MM:SS'
+        return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     };
 
 

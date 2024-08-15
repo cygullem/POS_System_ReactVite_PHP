@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddMenuModal from "./AddMenuModal";
+import EditMenuModal from './EditMenuModal';
 import { toast, Toaster } from 'sonner';
 import Meals from '../Images/meals.png';
 
 const Menu = ({ category }) => {
     const [showAddMenuModal, setShowAddMenuModal] = useState(false);
+    const [showEditMenuModal, setShowEditMenuModal] = useState(false);
     const [menuItems, setMenuItems] = useState([]);
     const [product, setProduct] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -72,7 +74,7 @@ const Menu = ({ category }) => {
                 toast.success('Item added to the order');
                 setTimeout(() => {
                     location.reload();
-                }, 2000); 
+                }, 2000);
             } else {
                 toast.error("Failed to add item to order.");
             }
@@ -83,11 +85,16 @@ const Menu = ({ category }) => {
         fetchData(item.name);
     };
 
-
     const handleBackButtonClick = () => {
         setViewList(false);
         setSelectedItem(null);
         setBackButtonVisible(false);
+    };
+
+    // Handle editing a product
+    const handleEditClick = (item) => {
+        setSelectedItem(item);
+        setShowEditMenuModal(true);
     };
 
     return (
@@ -141,23 +148,34 @@ const Menu = ({ category }) => {
                             <p>No menu items available for this category</p>
                         )
                     ) : (
+                        // Handle Product edit and Delete
                         product.length > 0 ? (
                             product.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="menu_items relative p-4 bg-white rounded-lg shadow-md"
+                                    className="menu_items flex flex-col justify-between relative p-4 bg-white rounded-lg shadow-md"
                                 >
-                                    <i className="fa-regular fa-circle-check text-2xl font-medium absolute top-0 right-1 cursor-pointer active:scale-95 hover:text-green-500" 
+                                    <i className="fa-regular fa-circle-check text-2xl font-medium absolute top-0 right-1 cursor-pointer active:scale-95 hover:text-green-500"
                                         onClick={() => handleItemClick(item)}>
                                     </i>
-                                    <h3 className="text-lg font-semibold">{item.name}</h3>
-                                    <p className="text-gray-500">{item.category}</p>
-                                    <p className="text-sm text-gray-700">{item.sku}</p>
-                                    <div className='flex items-center justify-between'>
+                                    <div className='flex gap-2 mb-1'>
+                                        <img src={Meals} alt="Meals" className="w-[110px] h-[110px] rounded-xl" />
+                                        <div>
+                                            <h3 className="text-md font-medium">{item.name}</h3>
+                                            <p className="text-gray-500">{item.sku}</p>
+                                            <p className='text-xs text-gray-400 text-wrap'>Delicious, satisfying, and perfectly seasoned, this meal was pure bliss!</p>
+                                        </div>
+                                    </div>
+                                    <div className='flex items-center justify-between mt-2'>
                                         <p className="text-3xl text-blue-700 font-semibold">${item.price}</p>
-                                        <div className='flex items-center gap-2'>
-                                            <i class="fa-solid fa-pen-to-square text-lg text-yellow-500"></i>
-                                            <i class="fa-solid fa-trash-can text-lg text-red-500"></i>
+                                        <div className='flex items-end justify-between gap-2'>
+                                            {/* click to edit product */}
+                                            <i
+                                                className="fa-solid fa-pen-to-square text-xl text-yellow-500 cursor-pointer"
+                                                onClick={() => handleEditClick(item)}
+                                            ></i>
+                                            {/* click to delete product */}
+                                            <i className="fa-solid fa-trash-can text-xl text-red-500 cursor-pointer"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -172,6 +190,7 @@ const Menu = ({ category }) => {
             </div>
 
             {showAddMenuModal && <AddMenuModal isOpen={showAddMenuModal} closeModal={() => setShowAddMenuModal(false)} />}
+            {showEditMenuModal && <EditMenuModal isOpen={showEditMenuModal} closeModal={() => setShowEditMenuModal(false)} product={selectedItem} />}
         </>
     );
 };

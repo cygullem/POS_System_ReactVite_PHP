@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AddMenuModal = ({ isOpen, closeModal }) => {
-    if (!isOpen) return null;
+const EditMenuModal = ({ isOpen, closeModal, product }) => {
+    if (!isOpen || !product) return null;
 
-    const [category, setCategory] = useState('');
-    const [name, setName] = useState('');
-    const [sku, setSku] = useState('');
-    const [price, setPrice] = useState('');
+    const [category, setCategory] = useState(product.category || '');
+    const [name, setName] = useState(product.name || '');
+    const [sku, setSku] = useState(product.sku || '');
+    const [price, setPrice] = useState(product.price || '');
     const [error, setError] = useState('');
 
-    const add = async (e) => {
+    const update = async (e) => {
         e.preventDefault();
         setError('');
         try {
-            const response = await axios.post('http://localhost/PHPPOST-main/addProduct.php', {
+            const response = await axios.post('http://localhost/PHPPOST-main/editProduct.php', {
+                id: product.id,
                 name,
                 sku,
                 category,
@@ -24,16 +25,23 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
             console.log('Response:', response.data);
 
             if (response.data.res === 'success') {
-                alert('Menu added successfully');
+                alert('Menu updated successfully');
                 closeModal();
             } else {
-                setError(`Failed to add menu: ${response.data.message}`);
+                setError(`Failed to update menu: ${response.data.message}`);
             }
         } catch (error) {
-            console.error('Error adding menu:', error);
+            console.error('Error updating menu:', error);
             setError('An error occurred. Please try again.');
         }
     };
+
+    useEffect(() => {
+        setCategory(product.category || '');
+        setName(product.name || '');
+        setSku(product.sku || '');
+        setPrice(product.price || '');
+    }, [product]);
 
     return (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
@@ -44,9 +52,9 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
                 >
                     <i className="fa-solid fa-xmark"></i>
                 </button>
-                <h2 className="text-xl font-semibold mb-4">Add New Menu</h2>
+                <h2 className="text-xl font-semibold mb-4">Edit Menu</h2>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
-                <form onSubmit={add}>
+                <form onSubmit={update}>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Category</label>
                         <select
@@ -94,7 +102,7 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
                     </div>
                     <div className="flex justify-end">
                         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-lg active:scale-95">
-                            Add Menu
+                            Update Menu
                         </button>
                     </div>
                 </form>
@@ -103,4 +111,4 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
     );
 };
 
-export default AddMenuModal;
+export default EditMenuModal;
