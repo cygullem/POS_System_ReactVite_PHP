@@ -91,7 +91,6 @@ const Menu = ({ category }) => {
         setBackButtonVisible(false);
     };
 
-    // Handle editing a product
     const handleEditClick = (item) => {
         setSelectedItem(item);
         setShowEditMenuModal(true);

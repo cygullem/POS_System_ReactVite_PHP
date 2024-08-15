@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast, Toaster } from 'sonner';
 
 const AddMenuModal = ({ isOpen, closeModal }) => {
     if (!isOpen) return null;
@@ -24,13 +25,17 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
             console.log('Response:', response.data);
 
             if (response.data.res === 'success') {
-                alert('Menu added successfully');
+                toast.success('Menu added successfully');
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
                 closeModal();
             } else {
                 setError(`Failed to add menu: ${response.data.message}`);
             }
         } catch (error) {
             console.error('Error adding menu:', error);
+            toast.error('Error adding menu:', error);
             setError('An error occurred. Please try again.');
         }
     };
@@ -99,6 +104,8 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
                     </div>
                 </form>
             </div>
+
+            <Toaster richColors expand={true} position="top-right" closeButton />
         </div>
     );
 };

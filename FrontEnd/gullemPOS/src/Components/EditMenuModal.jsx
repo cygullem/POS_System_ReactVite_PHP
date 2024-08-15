@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast, Toaster } from 'sonner';
 
 const EditMenuModal = ({ isOpen, closeModal, product }) => {
     if (!isOpen || !product) return null;
@@ -25,7 +26,10 @@ const EditMenuModal = ({ isOpen, closeModal, product }) => {
             console.log('Response:', response.data);
 
             if (response.data.res === 'success') {
-                alert('Menu updated successfully');
+                toast.success('Menu updated successfully');
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
                 closeModal();
             } else {
                 setError(`Failed to update menu: ${response.data.message}`);
@@ -107,6 +111,8 @@ const EditMenuModal = ({ isOpen, closeModal, product }) => {
                     </div>
                 </form>
             </div>
+
+            <Toaster richColors expand={true} position="top-right" closeButton />
         </div>
     );
 };
