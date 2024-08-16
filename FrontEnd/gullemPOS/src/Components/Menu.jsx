@@ -99,8 +99,8 @@ const Menu = ({ category }) => {
     };
 
     const handleDeleteClick = (item) => {
-        setSelectedItem(item);  // Ensure the selected item is set
-        setShowDeleteMenuModal(true);  // Open the delete modal
+        setSelectedItem(item); 
+        setShowDeleteMenuModal(true); 
     };
 
     return (
@@ -146,7 +146,7 @@ const Menu = ({ category }) => {
                                     </div>
                                     <div className='flex items-end justify-between h-full mt-4'>
                                         <p className="text-gray-700">{item.sku}</p>
-                                        <p className="text-3xl text-blue-700 font-semibold">${item.price}</p>
+                                        <p className="text-3xl text-blue-700 font-semibold">${item.price.toFixed(2)}</p>
                                     </div>
                                 </div>
                             ))
@@ -172,7 +172,7 @@ const Menu = ({ category }) => {
                                         </div>
                                     </div>
                                     <div className='flex items-center justify-between mt-2'>
-                                        <p className="text-3xl text-blue-700 font-semibold">${item.price}</p>
+                                        <p className="text-3xl text-blue-700 font-semibold">${item.price.toFixed(2)}</p>
                                         <div className='flex items-end justify-between gap-2'>
                                             <i
                                                 className="fa-solid fa-pen-to-square text-xl text-yellow-500 cursor-pointer"
@@ -192,7 +192,7 @@ const Menu = ({ category }) => {
                     )}
                 </div>
 
-                <Toaster richColors expand={true} position="top-right" closeButton />
+                <Toaster richColors expand={true} position="top-center" closeButton />
             </div>
 
             {showAddMenuModal && <AddMenuModal isOpen={showAddMenuModal} closeModal={() => setShowAddMenuModal(false)} />}

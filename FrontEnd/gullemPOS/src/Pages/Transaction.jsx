@@ -106,7 +106,7 @@ const Transaction = () => {
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Name</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Amount</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                                    {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th> */}
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
@@ -117,7 +117,7 @@ const Transaction = () => {
                                             <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
                                             <td className="px-6 py-4 whitespace-nowrap">{product.quantity}</td>
                                             <td className="px-6 py-4 whitespace-nowrap">{product.total}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap">{formatTime(time)}</td>
+                                            {/* <td className="px-6 py-4 whitespace-nowrap">{formatTime(time)}</td> */}
                                         </tr>
                                     ))
                                 )}

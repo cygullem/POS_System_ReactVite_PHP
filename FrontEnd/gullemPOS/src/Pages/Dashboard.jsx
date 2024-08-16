@@ -20,7 +20,7 @@ const Dashboard = () => {
                 <div className="menuContent h-full flex p-4 gap-4 overflow-auto">
                     <div className="flex flex-col flex-1">
                         <Categories onCategorySelect={handleCategorySelect} className="mb-4" />
-                        <Menu category={selectedCategory} className="mr-4" /> {/* Pass selectedCategory as category */}
+                        <Menu category={selectedCategory} className="mr-4" />
                     </div>
                     <Invoice className="flex-1 rounded-lg shadow-lg" />
                 </div>

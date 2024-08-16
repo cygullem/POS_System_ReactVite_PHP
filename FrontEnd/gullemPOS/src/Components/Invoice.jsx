@@ -202,7 +202,7 @@ const Invoice = () => {
                 </button>
             </div>
 
-            <Toaster richColors expand={true} position="top-right" closeButton />
+            <Toaster richColors expand={true} position="top-center" closeButton />
         </div>
     );
 }
