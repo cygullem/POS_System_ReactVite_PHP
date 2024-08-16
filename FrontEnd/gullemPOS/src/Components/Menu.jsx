@@ -5,6 +5,7 @@ import EditMenuModal from './EditMenuModal';
 import DeleteMenuModal from './DeleteMenuModal';
 import { toast, Toaster } from 'sonner';
 import Meals from '../Images/meals.png';
+import Logo404 from '../Images/sziazLogo404.png';
 
 const Menu = ({ category }) => {
     const [showAddMenuModal, setShowAddMenuModal] = useState(false);
@@ -119,11 +120,11 @@ const Menu = ({ category }) => {
 
                 {backButtonVisible && (
                     <button
-                        className="flex items-center p-3 gap-3 text-sm rounded-lg bg-gray-700 text-white mt-4"
+                        className="flex items-center p-2 gap-3 text-sm rounded-lg bg-gray-700 text-white mt-4"
                         onClick={handleBackButtonClick}
                     >
                         <i className="fa-solid fa-arrow-left text-xl"></i>
-                        <span className="select-none">Back</span>
+                        <span className="select-none">RETURN</span>
                     </button>
                 )}
 
@@ -137,7 +138,7 @@ const Menu = ({ category }) => {
                                     onClick={() => fetchData(item.name)}
                                 >
                                     <div className='flex gap-2 mb-1'>
-                                        <img src={Meals} alt="Meals" className="w-[100px] h-[100px] rounded-xl" />
+                                        <img src={Meals} alt="Meals" className="w-[115px] h-[115px] rounded-xl" />
                                         <div>
                                             <h3 className="text-md font-medium">{item.name}</h3>
                                             <p className="text-gray-500">{item.category}</p>
@@ -151,7 +152,9 @@ const Menu = ({ category }) => {
                                 </div>
                             ))
                         ) : (
-                            <p>No menu items available for this category</p>
+                            <div className='w-[60vw] flex justify-center'>
+                                <img className='h-[25rem]' src={Logo404} alt="Nothing on the Menu" />
+                            </div>
                         )
                     ) : (
                         product.length > 0 ? (

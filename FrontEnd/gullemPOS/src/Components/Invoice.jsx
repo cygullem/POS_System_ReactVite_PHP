@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { toast, Toaster } from 'sonner';
+import Logo404 from '../Images/sziazLogo404.png';
+
 
 const Invoice = () => {
     const [activeMethod, setActiveMethod] = useState('CreditCard');
@@ -147,7 +149,9 @@ const Invoice = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No items in the invoice.</p>
+                    <div className='flex justify-center'>
+                        <img className='h-[17rem]' src={Logo404} alt="Nothing on the Menu" />
+                    </div>
                 )}
             </div>
 
