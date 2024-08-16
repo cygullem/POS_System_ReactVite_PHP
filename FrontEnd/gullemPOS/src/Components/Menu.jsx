@@ -163,7 +163,7 @@ const Menu = ({ category }) => {
                                     key={item.id}
                                     className="menu_items flex flex-col justify-between relative p-4 bg-white rounded-lg shadow-md"
                                 >
-                                    <i className="fa-regular fa-circle-check text-2xl font-medium absolute top-0 right-1 cursor-pointer active:scale-95 hover:text-green-500"
+                                    <i className="fa-solid fa-circle-plus text-2xl absolute top-0 right-1 cursor-pointer active:scale-95 hover:text-green-500"
                                         onClick={() => handleItemClick(item)}>
                                     </i>
                                     <div className='flex gap-2 mb-1'>
