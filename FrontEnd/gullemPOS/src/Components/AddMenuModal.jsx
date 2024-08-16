@@ -45,9 +45,9 @@ const AddMenuModal = ({ isOpen, closeModal }) => {
             <div className="bg-white p-6 rounded-lg w-[35%] relative">
                 <button
                     onClick={closeModal}
-                    className="absolute top-2 right-2 text-black p-2 rounded-full hover:bg-gray-200"
+                    className="absolute flex items-center justify-center h-[40px] w-[40px] top-0 right-[-3rem] text-black p-2 rounded-[50%] bg-white group"
                 >
-                    <i className="fa-solid fa-xmark"></i>
+                    <i className="fa-solid fa-xmark transition duration-300 ease-in-out group-hover:rotate-[360deg]"></i>
                 </button>
                 <h2 className="text-xl font-semibold mb-4">Add New Menu</h2>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
