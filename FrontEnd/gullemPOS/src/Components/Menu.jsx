@@ -6,6 +6,7 @@ import DeleteMenuModal from './DeleteMenuModal';
 import { toast, Toaster } from 'sonner';
 import Meals from '../Images/meals.png';
 import Logo404 from '../Images/sziazLogo404.png';
+import Logo from '../Images/sziasLogo.png';
 
 const Menu = ({ category }) => {
     const [showAddMenuModal, setShowAddMenuModal] = useState(false);
@@ -153,7 +154,7 @@ const Menu = ({ category }) => {
                             ))
                         ) : (
                             <div className='w-[60vw] flex justify-center'>
-                                <img className='h-[25rem]' src={Logo404} alt="Nothing on the Menu" />
+                                <img className='h-[25rem]' src={Logo} alt="Logo" />
                             </div>
                         )
                     ) : (
@@ -190,7 +191,9 @@ const Menu = ({ category }) => {
                                 </div>
                             ))
                         ) : (
-                            <p>No menu items available for this name</p>
+                            <div className='w-[60vw] flex justify-center'>
+                                <img className='h-[25rem]' src={Logo404} alt="404 Not Found" />
+                            </div>
                         )
                     )}
                 </div>

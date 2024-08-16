@@ -9,7 +9,7 @@ const Categories = ({ onCategorySelect }) => {
         { name: 'Dinner', icon: 'fa-bowl-food' },
         { name: 'Soup', icon: 'fa-plate-wheat' },
         { name: 'Desserts', icon: 'fa-ice-cream' },
-        { name: 'Side Dish', icon: 'fa-fish-fins' },
+        { name: 'SideDish', icon: 'fa-fish-fins' },
         { name: 'Appetizer', icon: 'fa-cheese' },
         { name: 'Beverages', icon: 'fa-champagne-glasses' },
     ];
