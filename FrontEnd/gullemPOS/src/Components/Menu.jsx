@@ -145,7 +145,7 @@ const Menu = ({ category }) => {
                                             <p className='text-xs text-gray-400 text-wrap'>Delicious, satisfying, and perfectly seasoned, this meal was pure bliss!</p>
                                         </div>
                                     </div>
-                                    <div className='flex items-end justify-between h-full mt-4'>
+                                    <div className='flex items-end justify-between h-full mt-3'>
                                         <p className="text-gray-700">{item.sku}</p>
                                         <p className="text-3xl text-blue-700 font-semibold">${item.price.toFixed(2)}</p>
                                     </div>
